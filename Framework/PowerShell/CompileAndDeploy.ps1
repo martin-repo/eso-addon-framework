@@ -60,11 +60,13 @@ $frameworkFilePaths.Add("Log.lua") | Out-Null
 $frameworkFolderPath = Join-Path -Path $addonFolderPath -ChildPath "Framework"
 $currentVersionFilePath = Join-Path -Path $frameworkFolderPath -ChildPath "version.txt"
 $currentVersion = Get-Content -Path $currentVersionFilePath
+$apiVersionFilePath = Join-Path -Path $frameworkFolderPath -ChildPath "apiversion.txt"
+$apiVersion = Get-Content -Path $apiVersionFilePath
 
 $manifestBuilder = [System.Text.StringBuilder]::new()
 
 $manifestBuilder.AppendLine("## Title: ESO Addon |c00ff00Framework|r") | Out-Null
-$manifestBuilder.AppendLine("## APIVersion: 100035") | Out-Null
+$manifestBuilder.AppendLine("## APIVersion: $($apiVersion)") | Out-Null
 $manifestBuilder.AppendLine("## Author: Martin") | Out-Null
 $manifestBuilder.AppendLine("## Description: Library supporting development in Visual Studio Code.") | Out-Null
 $manifestBuilder.AppendLine("## AddOnVersion: 1") | Out-Null
@@ -184,7 +186,7 @@ $addonInfoJson = "{" + ($addonInfoCode -replace "(\w+) =", """`$1"":" -replace "
 $manifestBuilder = [System.Text.StringBuilder]::new()
 
 $manifestBuilder.AppendLine("## Title: $($addonInfoJson.DisplayName)") | Out-Null
-$manifestBuilder.AppendLine("## APIVersion: 100035") | Out-Null
+$manifestBuilder.AppendLine("## APIVersion: $($apiVersion)") | Out-Null
 $manifestBuilder.AppendLine("## Author: $($addonInfoJson.Author)") | Out-Null
 $manifestBuilder.AppendLine("## Description: $($addonInfoJson.Description)") | Out-Null
 $manifestBuilder.AppendLine("## AddOnVersion: 1") | Out-Null

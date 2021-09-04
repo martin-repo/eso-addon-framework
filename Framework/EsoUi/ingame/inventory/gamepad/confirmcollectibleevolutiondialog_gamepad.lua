@@ -1,0 +1,63 @@
+--[[
+This file was extracted by 'EsoLuaGenerator' at '2021-09-04 16:42:27' using the latest game version.
+NOTE: This file should only be used as IDE support; it should NOT be distributed with addons!
+
+****************************************************************************
+           CONTENTS OF THIS FILE IS COPYRIGHT ZENIMAX MEDIA INC.
+****************************************************************************
+]]
+
+function ZO_ConfirmCollectibleEvolution_Gamepad_OnInitialized(control)
+    ZO_GenericGamepadDialog_OnInitialized(control)
+
+    local container = control:GetNamedChild("Container")
+    local baseCollectibleTextureControl = container:GetNamedChild("BaseIcon")
+    local evolvedCollectibleTextureControl = container:GetNamedChild("EvolvedIcon")
+
+    ZO_Dialogs_RegisterCustomDialog("CONFIRM_COLLECTIBLE_EVOLUTION_PROMPT_GAMEPAD",
+    {
+        customControl = control,
+        setup = function(dialog)
+            local data = dialog.data
+            local baseCollectibleData = ZO_COLLECTIBLE_DATA_MANAGER:GetCollectibleDataById(data.baseCollectibleId)
+            local evolvedCollectibleData = ZO_COLLECTIBLE_DATA_MANAGER:GetCollectibleDataById(data.evolvedCollectibleId)
+
+            baseCollectibleTextureControl:SetTexture(baseCollectibleData:GetIcon())
+            evolvedCollectibleTextureControl:SetTexture(evolvedCollectibleData:GetIcon())
+
+            dialog:setupFunc()
+        end,
+        gamepadInfo =
+        {
+            dialogType = GAMEPAD_DIALOGS.CUSTOM,
+        },
+        title =
+        {
+            text = SI_COLLECTIBLE_EVOLUTION_PROMPT_TITLE,
+        },
+        mainText = 
+        {
+            text = SI_COLLECTIBLE_EVOLUTION_PROMPT_CONFIRMATION_TEXT,
+        },
+        buttons =
+        {
+            {
+                keybind = "DIALOG_PRIMARY",
+                text = SI_DIALOG_YES,
+                callback = function(dialog)
+                    dialog.data.acceptCallback()
+                end,
+            },
+            {
+                keybind = "DIALOG_NEGATIVE",
+                text = SI_DIALOG_NO,
+                callback = function(dialog)
+                    dialog.data.declineCallback()
+                end,
+            }
+        },
+        noChoiceCallback = function(dialog)
+            dialog.data.declineCallback()
+        end,
+    })
+end

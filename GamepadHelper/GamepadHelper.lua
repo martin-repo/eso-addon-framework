@@ -1,0 +1,1 @@
+EsoAddonFramework_Framework_Bootstrapper.Start(GamepadHelper_Globals_AddonInfo)

@@ -1,0 +1,12 @@
+<Bindings>
+	<Layer name="SI_KEYBINDINGS_LAYER_GENERAL">
+		<Category name="SI_KEYBINDINGS_CATEGORY_GAMEPAD_HELPER_ADDON_NAME">
+			<Action name="GAMEPAD_HELPER_RELOADUI">
+				<Down>GamepadHelper_Ui_Bindings.ReloadUi()</Down>
+			</Action>
+			<Action name="GAMEPAD_HELPER_SHOW_SETTINGS">
+				<Down>GamepadHelper_Ui_Bindings.ShowSettings()</Down>
+			</Action>
+		</Category>
+	</Layer>
+</Bindings>

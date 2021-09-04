@@ -1,0 +1,2 @@
+SuppressBladeOfWoeCheckbox = { }
+SuppressFeedCheckbox = { }

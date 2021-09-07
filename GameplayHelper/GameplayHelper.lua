@@ -1,0 +1,1 @@
+EsoAddonFramework_Framework_Bootstrapper.Start(GameplayHelper_Globals_AddonInfo)

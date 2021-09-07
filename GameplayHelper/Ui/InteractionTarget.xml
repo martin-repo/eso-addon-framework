@@ -1,0 +1,15 @@
+<GuiXml>
+	<Controls>
+        <TopLevelControl name="GameplayHelper_Ui_InteractionTarget">
+			<Dimensions x="500px" y="25px" />
+			<Anchor point="TOPLEFT" offsetX="20px" offsetY="200px" />
+			
+			<Controls>
+				<Label name="$(parent)_Name" font="ZoFontWinH1" inheritAlpha="true" color="00FF00" wrapMode="TRUNCATE" text="">
+					<Dimensions x="500px" y="25px" />
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$(parent)" offsetY="0px"/>
+				</Label>
+			</Controls>
+		</TopLevelControl>
+	</Controls>
+</GuiXml>

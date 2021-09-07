@@ -158,16 +158,17 @@ local function EndConversationIfNavigator()
     local name = GetUnitName(UnitTag.Interact)
     local caption = GetUnitCaption(UnitTag.Interact)
     local isNavigator = caption ~= nil and caption:lower() == "navigator"
-    if (isNavigator) then
-        local interactionType = GetInteractionType()
-        EndInteraction(interactionType)
-
-        if (_settings.OutputSuppressions) then
-            Console.Write(String.Format("{1} does not want to travel with {2}", MirriName, name))
-        end
+    if (not isNavigator) then
+        _log:Debug("Interaction with {1} approved", name)
+        return
     end
 
-    _log:Debug("Interaction with {1} approved", name)
+    local interactionType = GetInteractionType()
+    EndInteraction(interactionType)
+
+    if (_settings.OutputSuppressions) then
+        Console.Write(String.Format("{1} does not want to travel with {2}", MirriName, name))
+    end
 end
 
 local function OnClientInteractResult(event, result, interactTargetName)
